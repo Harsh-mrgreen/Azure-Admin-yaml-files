@@ -1,0 +1,11 @@
+- hosts: webserver
+  remote_user: root
+  tasks:
+  - name: Installing Apache
+    yum: name=httpd state=present
+  - name: Copying Webpage
+    copy: src=/playbook/index.html dest=/var/www/html/index.html
+  - name: Starting Apache
+    service: name=httpd state=started
+  - name: Enabling HTTPD
+    shell: systemctl enable httpd
